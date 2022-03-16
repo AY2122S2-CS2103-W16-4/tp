@@ -22,7 +22,7 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final RealEstatePro realEstatePro;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private List<Pair<Person>> matchList;
@@ -30,19 +30,19 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyRealEstatePro addressBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.realEstatePro = new RealEstatePro(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPersons = new FilteredList<>(this.realEstatePro.getPersonList());
         matchList = new ArrayList<>();
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new RealEstatePro(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -71,41 +71,41 @@ public class ModelManager implements Model {
 
     @Override
     public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+        return userPrefs.getRealEstateProFilePath();
     }
 
     @Override
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+        userPrefs.setRealEstateProFilePath(addressBookFilePath);
     }
 
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setAddressBook(ReadOnlyRealEstatePro addressBook) {
+        this.realEstatePro.resetData(addressBook);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyRealEstatePro getAddressBook() {
+        return realEstatePro;
     }
 
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return realEstatePro.hasPerson(person);
     }
 
     @Override
     public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+        realEstatePro.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
-        addressBook.addPerson(person);
+        realEstatePro.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -113,7 +113,7 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        addressBook.setPerson(target, editedPerson);
+        realEstatePro.setPerson(target, editedPerson);
     }
 
 
@@ -124,12 +124,12 @@ public class ModelManager implements Model {
 
     @Override
     public void updateMatchList() {
-        matchList = addressBook.match();
+        matchList = realEstatePro.match();
     }
 
     @Override
     public void setFavouriteStatus(Person personToFavourite) {
-        addressBook.setFavouriteStatus(personToFavourite);
+        realEstatePro.setFavouriteStatus(personToFavourite);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -164,7 +164,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return realEstatePro.equals(other.realEstatePro)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }

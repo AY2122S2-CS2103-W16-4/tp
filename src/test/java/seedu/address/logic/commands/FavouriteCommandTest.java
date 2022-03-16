@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.RealEstatePro;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -24,7 +24,7 @@ class FavouriteCommandTest {
     void execute_favouriteOnValidIndexUnfilteredList_success() throws CommandException {
         Person personToFavourite = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new RealEstatePro(model.getAddressBook()), new UserPrefs());
         CommandResult commandResult = new FavouriteCommand(INDEX_FIRST_PERSON).execute(expectedModel);
 
         /* Runs test based on the starting favourite status of the first person in the address book */

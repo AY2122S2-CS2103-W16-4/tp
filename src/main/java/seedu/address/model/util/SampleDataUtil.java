@@ -3,8 +3,8 @@ package seedu.address.model.util;
 import java.util.HashSet;
 import java.util.Optional;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.RealEstatePro;
+import seedu.address.model.ReadOnlyRealEstatePro;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -39,8 +39,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyRealEstatePro getSampleAddressBook() {
+        RealEstatePro sampleAb = new RealEstatePro();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }

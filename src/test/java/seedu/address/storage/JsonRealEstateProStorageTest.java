@@ -17,7 +17,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.RealEstatePro;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyRealEstatePro;
 
 public class JsonRealEstateProStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
@@ -30,8 +30,8 @@ public class JsonRealEstateProStorageTest {
         assertThrows(NullPointerException.class, () -> readAddressBook(null));
     }
 
-    private java.util.Optional<ReadOnlyAddressBook> readAddressBook(String filePath) throws Exception {
-        return new JsonAddressBookStorage(Paths.get(filePath)).readAddressBook(addToTestDataPathIfNotNull(filePath));
+    private java.util.Optional<ReadOnlyRealEstatePro> readAddressBook(String filePath) throws Exception {
+        return new JsonRealEstateProStorage(Paths.get(filePath)).readRealEstatePro(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -64,24 +64,24 @@ public class JsonRealEstateProStorageTest {
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
         RealEstatePro original = getTypicalAddressBook();
-        JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
+        JsonRealEstateProStorage jsonAddressBookStorage = new JsonRealEstateProStorage(filePath);
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        ReadOnlyAddressBook readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
+        jsonAddressBookStorage.saveRealEstatePro(original, filePath);
+        ReadOnlyRealEstatePro readBack = jsonAddressBookStorage.readRealEstatePro(filePath).get();
         assertEquals(original, new RealEstatePro(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addPerson(HOON);
         original.removePerson(ALICE);
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
+        jsonAddressBookStorage.saveRealEstatePro(original, filePath);
+        readBack = jsonAddressBookStorage.readRealEstatePro(filePath).get();
         assertEquals(original, new RealEstatePro(readBack));
 
         // Save and read without specifying file path
         original.addPerson(IDA);
-        jsonAddressBookStorage.saveAddressBook(original); // file path not specified
-        readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
+        jsonAddressBookStorage.saveRealEstatePro(original); // file path not specified
+        readBack = jsonAddressBookStorage.readRealEstatePro().get(); // file path not specified
         assertEquals(original, new RealEstatePro(readBack));
 
     }
@@ -94,10 +94,10 @@ public class JsonRealEstateProStorageTest {
     /**
      * Saves {@code addressBook} at the specified {@code filePath}.
      */
-    private void saveAddressBook(ReadOnlyAddressBook addressBook, String filePath) {
+    private void saveAddressBook(ReadOnlyRealEstatePro addressBook, String filePath) {
         try {
-            new JsonAddressBookStorage(Paths.get(filePath))
-                    .saveAddressBook(addressBook, addToTestDataPathIfNotNull(filePath));
+            new JsonRealEstateProStorage(Paths.get(filePath))
+                    .saveRealEstatePro(addressBook, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
