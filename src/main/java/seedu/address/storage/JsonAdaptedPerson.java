@@ -61,7 +61,7 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        favourite = source.getFavourite().isPresent() ? source.getFavourite().toString() : null;
+        favourite = source.getFavourite().isPresent() ? source.getFavourite().get().toString() : null;
         address = source.getAddress().value;
         property = source.getProperty().isPresent() ? new JsonAdaptedProperty(source.getProperty().get()) : null;
         tagged.addAll(source.getTags().stream()
