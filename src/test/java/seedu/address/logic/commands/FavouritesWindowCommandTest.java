@@ -14,7 +14,8 @@ public class FavouritesWindowCommandTest {
 
     @Test
     public void execute_favouriteswindow_success() {
-        CommandResult expectedCommandResult = new CommandResult(MESSAGE_FAVOURITES_WINDOW_SUCCESS, false, false, true);
+        CommandResult expectedCommandResult = new CommandResult(MESSAGE_FAVOURITES_WINDOW_SUCCESS,
+                 false, false, false, true);
         assertCommandSuccess(new FavouritesWindowCommand(), model, expectedCommandResult, expectedModel);
     }
 }
