@@ -36,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
     private MatchWindow matchWindow;
     private FavouriteWindow favouriteWindow;
+    private StatisticsWindow statisticsWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -70,6 +71,7 @@ public class MainWindow extends UiPart<Stage> {
         favouriteWindow = new FavouriteWindow(logic);
         helpWindow = new HelpWindow();
         matchWindow = new MatchWindow(logic);
+        statisticsWindow = new StatisticsWindow(logic);
     }
 
     public Stage getPrimaryStage() {
@@ -189,6 +191,18 @@ public class MainWindow extends UiPart<Stage> {
             favouriteWindow.show();
         } else {
             favouriteWindow.getRoot().requestFocus();
+        }
+    }
+
+    /**
+     * Opens up StatisticsWindow by setting up the fxml scene and opening it
+     */
+    @FXML
+    private void handleStatistics(ActionEvent event) {
+        if (!statisticsWindow.getRoot().isShowing()) {
+            statisticsWindow.show();
+        } else {
+            statisticsWindow.getRoot().requestFocus();
         }
     }
 

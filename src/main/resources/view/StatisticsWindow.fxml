@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.stage.Stage?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.geometry.Insets?>
+<Stage minHeight="600" minWidth="450" title="Statistics Window" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <icons>
+        <Image url="@/images/pie-chart.png" />
+    </icons>
+    <scene>
+        <Scene>
+            <stylesheets>
+                <URL value="@DarkTheme.css" />
+                <URL value="@Extensions.css" />
+            </stylesheets>
+            <VBox>
+                <children>
+                    <PieChart layoutX="-25.0" layoutY="107.0" prefHeight="386.0" prefWidth="500.0" title="Clients in different areas" fx:id="pieChart" stylesheets="PieChartTheme.css"/>
+                </children>
+            </VBox>
+        </Scene>
+    </scene>
+</Stage>
