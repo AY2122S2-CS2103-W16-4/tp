@@ -93,12 +93,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Favourites the given Client.
+     * @param personToFavourite is the given Client
+     */
     public void favouritePerson(Person personToFavourite) {
         persons.favouritePerson(personToFavourite);
     }
 
     //// util methods
-
     @Override
     public String toString() {
         return persons.asUnmodifiableObservableList().size() + " persons";
