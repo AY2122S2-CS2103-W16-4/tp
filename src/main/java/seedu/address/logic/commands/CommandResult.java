@@ -14,6 +14,9 @@ public class CommandResult {
     /** Help information should be shown to the user. */
     private final boolean showHelp;
 
+    /** Match information should be shown to the user. */
+    private final boolean showMatch;
+
     /** The application should exit. */
     private final boolean exit;
 
@@ -23,9 +26,10 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean showFavourites) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean showMatch, boolean exit, boolean showFavourites) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
+        this.showMatch = showMatch;
         this.exit = exit;
         this.showFavourites = showFavourites;
     }
@@ -44,6 +48,10 @@ public class CommandResult {
 
     public boolean isShowHelp() {
         return showHelp;
+    }
+
+    public boolean isShowMatch() {
+        return showMatch;
     }
 
     public boolean isExit() {
@@ -70,11 +78,14 @@ public class CommandResult {
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit
                 && showFavourites == otherCommandResult.isShowFavourites();
+                && showMatch == otherCommandResult.showMatch
+                && exit == otherCommandResult.exit;
+                && showFavourites == otherCommandResult.isShowFavourites();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, showFavourites);
+        return Objects.hash(feedbackToUser, showHelp, showMatch, exit, showFavourites);
     }
 
     @Override
