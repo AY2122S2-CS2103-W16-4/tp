@@ -169,11 +169,11 @@ public class MainWindow extends UiPart<Stage> {
      * Opens up FavouriteWindow by setting up the fxml scene and opening it
      */
     @FXML
-    private void handleFavourite(ActionEvent event) {
-        if (!favouriteWindow.getRoot().isShowing()) {
+    private void handleFavourite() {
+        if (!favouriteWindow.isShowing()) {
             favouriteWindow.show();
         } else {
-            favouriteWindow.getRoot().requestFocus();
+            favouriteWindow.focus();
         }
     }
 
@@ -198,6 +198,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowFavourites()) {
+                handleFavourite();
             }
 
             personListPanel.refresh();

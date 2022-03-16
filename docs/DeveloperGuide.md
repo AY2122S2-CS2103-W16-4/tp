@@ -16,28 +16,41 @@ Take a look at our design which is mostly based off on [AddressBook Level 3 (AB3
 
 This section describes some noteworthy details on how certain features are implemented.
 
-## Favourite feature/Window
+## Favourites feature/Window
 
 ### Proposed Implementation
 
-The proposed `favourite` mechanism will make use of a new attribute called ‘Favourite’ under a ‘Person’. How we went about creating this function is by going through the list of Persons and check if their attribute ‘Favourite’ returns “Favourited” when `toString()` is called.
+The previously proposed `favourite` mechanism made use of a new attribute called `Favourite` under a `Person`. How we went about creating this function was by going through the list of `Person` and check if their attribute `Favourite` returns “Favourited” when `toString()` is called.
 
-We decided on this design for now because the sole purpose of it now is just to display Persons that are favourited, thus we made use of an attribute to do that.
+In version v1.2b, we decided to change `Favourite` to be Optional. Thus only `Person` that is favourited will have an instance of `Favourite`.
 
-Given below is an example of how the `favourite`mechanism behaves with the `favourite`window.
-
-Step 1. The user starts the application with pre-loaded data of Persons.
-
-Step 2. Assuming there is a Person with the number 1. User then executes `favourite 1` command to favourite the first Person in the application. The system will create a new Person with the ‘favourite’ attribute set as true. Then calls `Model#setPerson()` to set Person 1 to be a favourited Person.
+Do note that `EditCommand` will not be able to edit the `Favourite` status of a Person.
 
 <aside>
-💡 **Note:** Every newly added Person will have the default value of `False` for ‘Favourite’ attribute, thus will never appear in the FavouriteWindow before the `favourite` command is called on them.
-
-</aside>
-
-Step 3. User can access the `Favourite`Window by navigating to the menu item as shown in the diagram, which pops up a new window that contains only those Persons that have ‘Favourite’ attribute set as True.
+💡 **Note:** Previously, to access the Favourites Window, users will navigate to the 'Favourite' menu item under 'File' menu as shown below. Since we wanted to make this app more CLI-friendly, we created a new command 'fw' to open the Favourites Window instead.
 
 ![FavouriteWindow](images/developer-guide/FavouriteWindowAccess.png)
+</aside>
+
+We decided on `fw` as the command for opening up the Favourites Window because this is much shorter and faster to type compared to `favouriteswindow` for example.
+
+## Property
+The `Property` is a new attribute that can be added to a `Person` that represents a real estate property listing. A `Person` is able to hold multiple properties including none.
+
+The `Property` itself consists of the following attributes: `Region`, `Address`, `Size`, `Price`.
+
+- `Region` represents the general location of the `Address` of the `Property`. It is an enum that can be one of the following: `NORTH`, `SOUTH`, `EAST`, `WEST`, `CENTRAL`.
+
+- `Address` represents the exact location of the `Property`.
+
+- `Size` represents the size of the `Property` in terms of the number of rooms it has. It is an enum that can be one of the following: `ONE_ROOM`, `TWO_ROOM`, `THREE_ROOM`, `FOUR_ROOM`, `FIVE_ROOM`.
+
+- `Price` represents the price of the `Property`. It's `toString()` method returns the price in the form of `$###` or `$###.#K` or `$###.#M` depending on the value of the `Price` for easier readability.
+
+## UserType
+The `UserType` represents an attribute that needs to be added to a `Person` & represents the `Person` as a `buyer` or `seller`. A `Person` is only either a `buyer` or `seller` at a given time. They cannot be both or none.
+
+Similar to other attributes of a `Person`, the `UserType` of a `Person` can be edited via the `edit` command. A `Person` can be changed from a `buyer` to a `seller` & vice versa. This can be done with the command: `edit INDEX t/seller`
 
 # Documentation, logging, testing, configuration, dev-ops
 
@@ -112,21 +125,20 @@ Given below are instructions to test the app manually.
 ## Launch and shutdown
 
 1. Initial launch
-    1. Download the jar file and copy into an empty folder
-    2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Download the jar file and copy into an empty folder
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 2. Saving window preferences
-    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-    2. Re-launch the app by double-clicking the jar file.Expected: The most recent window size and location is retained.
+   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   2. Re-launch the app by double-clicking the jar file.Expected: The most recent window size and location is retained.
 3. Shutting down
-    1. First way you can do it is to click on the X button on the application.
-    2. Another way is to click on ‘File’ menu item and click on ‘Exit’.
-    3. Lastly, you can enter the `exit`command.
+   1. First way you can do it is to click on the X button on the application.
+   2. Another way is to click on ‘File’ menu item and click on ‘Exit’.
+   3. Lastly, you can enter the `exit`command.
 
 ## Deleting a person
 
 1. Deleting a person while all persons are being shown
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-    2. Test case: `delete 1`Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-    3. Test case: `delete 0`Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size or smaller than 0)Expected: Similar to previous.
-
+   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   2. Test case: `delete 1`Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   3. Test case: `delete 0`Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size or smaller than 0)Expected: Similar to previous.
