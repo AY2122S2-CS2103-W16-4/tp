@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -36,7 +37,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
-        descriptor.setFavourite(person.getFavourite());
+        descriptor.setFavourite(person.getFavourite().get());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
     }

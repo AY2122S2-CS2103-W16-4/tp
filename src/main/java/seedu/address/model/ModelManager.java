@@ -112,8 +112,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setFavouriteStatus(Person personToFavourite) {
-        addressBook.setFavouriteStatus(personToFavourite);
+    public void favouritePerson(Person personToFavourite) {
+        addressBook.favouritePerson(personToFavourite);
     }
 
     //=========== Filtered Person List Accessors =============================================================

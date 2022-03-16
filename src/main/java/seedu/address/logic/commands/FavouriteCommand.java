@@ -18,8 +18,6 @@ public class FavouriteCommand extends Command {
     public static final String COMMAND_WORD = "favourite";
     public static final String MESSAGE_FAVOURITE_PERSON_SUCCESS =
             "Favourited Client %1$s! Check if he/she exists in the Favourite Window!";
-    public static final String MESSAGE_UNFAVOURITE_PERSON_SUCCESS =
-            "Unfavourited Client %1$s! Check that he/she is removed from the Favourite Window!";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Favourites a client selected "
             + "by the index number used in the last client listing.\n"
@@ -44,7 +42,7 @@ public class FavouriteCommand extends Command {
         }
 
         Person personToFavourite = lastShownList.get(index.getZeroBased());
-        model.setFavouriteStatus(personToFavourite);
+        model.favouritePerson(personToFavourite);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(generateSuccessMessage(personToFavourite));
     }
@@ -55,13 +53,7 @@ public class FavouriteCommand extends Command {
      * {@code personToFavourite}.
      */
     private String generateSuccessMessage(Person personToFavourite) {
-        String message = "";
-        if (personToFavourite.getFavourite().getStatus()) {
-            message = MESSAGE_FAVOURITE_PERSON_SUCCESS;
-        } else {
-            message = MESSAGE_UNFAVOURITE_PERSON_SUCCESS;
-        }
-        return String.format(message, personToFavourite.getName());
+        return String.format(MESSAGE_FAVOURITE_PERSON_SUCCESS, personToFavourite.getName());
     }
 
     @Override
