@@ -150,7 +150,7 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Favourite: ")
-                .append(getFavourite().toString())
+                .append(getFavourite())
                 .append("; Address: ")
                 .append(getAddress());
 
