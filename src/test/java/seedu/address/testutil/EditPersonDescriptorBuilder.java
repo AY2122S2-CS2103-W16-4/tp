@@ -6,7 +6,6 @@ import java.util.Set;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Favourite;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -38,7 +37,6 @@ public class EditPersonDescriptorBuilder {
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
-        descriptor.setFavourite(person.getFavourite().isPresent() ? person.getFavourite().get() : null);
         descriptor.setAddress(person.getAddress());
         descriptor.setProperties(person.getProperties());
         descriptor.setUserType(person.getUserType());
@@ -65,14 +63,6 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Favourite} of the {@code EditPersonDescriptor} that we are building.
-     */
-    public EditPersonDescriptorBuilder withFavourite(Favourite favourite) {
-        descriptor.setFavourite(favourite);
         return this;
     }
 

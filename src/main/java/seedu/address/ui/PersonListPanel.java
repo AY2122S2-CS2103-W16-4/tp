@@ -46,11 +46,4 @@ public class PersonListPanel extends UiPart<Region> {
         }
     }
 
-    /**
-     * Manually refreshes the ListView to update Favourite status consistently
-     */
-    public void refresh() {
-        personListView.refresh();
-    }
-
 }
