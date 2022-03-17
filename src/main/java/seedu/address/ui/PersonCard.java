@@ -62,7 +62,7 @@ public class PersonCard extends UiPart<Region> {
         if (person.getFavourite().isPresent()) {
             favourite.setText(person.getFavourite().get().toString());
         } else {
-            favourite.setVisible(false);
+            favourite.setManaged(false);
         }
         userType.getChildren().add(new Label(person.getUserType().value));
 

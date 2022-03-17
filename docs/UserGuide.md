@@ -206,3 +206,4 @@ RealEstatePro data are saved as a JSON file `[JAR file location]/data/realestate
 | Favourite                                                                                                            | favourite INDEX
  e.g., favourite 3                                                                                                    |
 | Open Favourites window                                                                                               | fw
+
