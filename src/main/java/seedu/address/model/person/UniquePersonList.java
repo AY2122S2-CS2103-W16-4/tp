@@ -99,9 +99,13 @@ public class UniquePersonList implements Iterable<Person> {
         internalList.setAll(persons);
     }
 
-    public void setFavouriteStatus(Person personToFavourite) {
+    /**
+     * Favourites the given Client.
+     * @param personToFavourite is the given Client
+     */
+    public void favouritePerson(Person personToFavourite) {
         requireNonNull(personToFavourite);
-        personToFavourite.toggleFavourite();
+        personToFavourite.createFavouriteStatus();
         setPerson(personToFavourite, personToFavourite);
     }
 

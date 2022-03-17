@@ -27,16 +27,9 @@ class FavouriteCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         CommandResult commandResult = new FavouriteCommand(INDEX_FIRST_PERSON).execute(expectedModel);
 
-        /* Runs test based on the starting favourite status of the first person in the address book */
-        if (!personToFavourite.getFavourite().getStatus()) {
-            assertEquals(
-                    String.format(FavouriteCommand.MESSAGE_UNFAVOURITE_PERSON_SUCCESS, personToFavourite.getName()),
-                    commandResult.getFeedbackToUser());
-        } else {
-            assertEquals(
-                    String.format(FavouriteCommand.MESSAGE_FAVOURITE_PERSON_SUCCESS, personToFavourite.getName()),
-                    commandResult.getFeedbackToUser());
-        }
+        assertEquals(
+                String.format(FavouriteCommand.MESSAGE_FAVOURITE_PERSON_SUCCESS, personToFavourite.getName()),
+                commandResult.getFeedbackToUser());
     }
 
     @Test

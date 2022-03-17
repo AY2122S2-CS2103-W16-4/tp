@@ -6,14 +6,16 @@ title: User Guide
 
 RealEstatePro is a desktop app for managing contacts, optimized for real estate agents to manage their clients’ contacts and sales of properties.
 
+RealEstatePro is a desktop app for managing contacts, optimized for real estate agents to manage their clients’ contacts and sales of properties.
+
 # Reference
 
 Original AB3 User Guide: [link](https://se-education.org/addressbook-level3/UserGuide.html)
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed on your computer.
-2. Download the latest `realestatepro.jar` from here **(add link)**.
+1. Ensure you have Java `11` or above installed on your computer.
+2. Download the latest `realestatepro.jar` from here **(add link)**.
 3. Copy the file to the folder you want to use as the *home folder* for your RealEstatePro.
 4. Double-click the file to start the app. The GUI should appear in a few seconds.
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.
@@ -93,7 +95,7 @@ Edits an existing person in the address book.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [pr/PROPERTY]… [t/USER_TYPE]`
 
-- Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …
+- Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
 - You may change the type of the user, from `buyer` to `seller` & vice versa
@@ -109,13 +111,13 @@ Examples:
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD [MORE_KEYWORDS]`
 
-- The search is case-insensitive. e.g `hans` will match `Hans`
-- The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+- The search is case-insensitive. e.g `hans` will match `Hans`
+- The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 - Only the name is searched.
-- Only full words will be matched e.g. `Han` will not match `Hans`
-- Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+- Only full words will be matched e.g. `Han` will not match `Hans`
+- Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
 
@@ -128,16 +130,16 @@ Examples:
 
 Deletes the specified person from the address book.
 
-Format: `delete INDEX`
+Format: `delete INDEX`
 
-- Deletes the person at the specified `INDEX`.
+- Deletes the person at the specified `INDEX`.
 - The index refers to the index number shown in the displayed person list.
-- The index **must be a positive integer** 1, 2, 3, …
+- The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
 
-- `list` followed by `delete 2` deletes the 2nd person in the address book.
-- `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+- `list` followed by `delete 2` deletes the 2nd person in the address book.
+- `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
@@ -151,15 +153,23 @@ Exits the program.
 
 Format: `exit`
 
+## Navigating the help window
+
+<img src="images/user-guide/helpWindowUi.png" width="600px">
+
+1. Link to the full user guide
+2. Buttons to access the different help sections
+3. Help contents
+
 ### Favourite a person: `favourite`
 
-Favourites the specified person from the application. The user (real estate agent) will be able to view the more compact list of favorited persons in a new window that can be opened up through the ‘Favourite’ menu item.
+Favourites the specified person from the application. The user (real estate agent) will be able to view the more compact list of favourited persons in a new Favourites Window.
 
-Format: `favourite INDEX`
+Format: `favourite INDEX`
 
-- Favourites the person at the specified `INDEX`.
+- Favourites the person at the specified `INDEX`.
 - The index refers to the index number shown in the displayed person list.
-- The index **must be a positive integer** 1, 2, 3, …
+- The index **must be a positive integer** 1, 2, 3, …
 
 ### Open Help Window: `help`
 
@@ -175,15 +185,11 @@ Format: `help`
 2. Buttons to access the different help sections
 3. Help contents
 
-### Open Favourite Window:
+### Open Favourites Window: `fw`
 
 This opens up a new window that lists Persons that have been favourited.
 
-1)  Navigate to the ‘File’ menu item and click on it.
-
-2) Under it, click on ‘Favourite’
-
-3) The system will pop up the window that contains a list of Persons favourited by the user.
+Format: `fw`
 
 ### User onboarding [Coming soon]
 
@@ -193,10 +199,10 @@ RealEstatePro data are saved in the hard disk automatically after any command th
 
 ### Editing the data file
 
-RealEstatePro data are saved as a JSON file `[JAR file location]/data/realestatepro.json`. Advanced users are welcome to update data directly by editing that data file.
+RealEstatePro data are saved as a JSON file `[JAR file location]/data/realestatepro.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <aside>
-❗ **Caution:** If your changes to the data file makes its format invalid, RealEstatePro will discard all data and start with an empty data file at the next run.
+❗ **Caution:** If your changes to the data file makes its format invalid, RealEstatePro will discard all data and start with an empty data file at the next run.
 
 </aside>
 
@@ -204,19 +210,20 @@ RealEstatePro data are saved as a JSON file `[JAR file location]/data/realestat
 
 # Command Summary
 
-| Action | Format, Examples  |
-| --- | --- |
-| Add | add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [pr/PROPERTY]..., t/USER_TYPE
-e.g., add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 pr/2-room, East, SGD$200K, t/buyer    |
-| Clear | clear  |
-| Delete | delete INDEX
-e.g., delete 3  |
-| Edit | edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [pr/PROPERTY]… [t/USER_TYPE]    ​
-e.g., edit 2 n/James Lee e/jameslee@example.com |
-| Find | find KEYWORD [MORE_KEYWORDS]
-e.g., find James Jake  |
-| List | list  |
-| Help | help  |
-| Favourite | favourite INDEX
-e.g., favourite 3  |
+| Action                                                                                                               | Format, Examples  |
+|----------------------------------------------------------------------------------------------------------------------| --- |
+| Add                                                                                                                  | add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [pr/PROPERTY]..., t/USER_TYPE
+ e.g., add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 pr/2-room, East, SGD$200K, t/buyer |
+| Clear                                                                                                                | clear  |
+| Delete                                                                                                               | delete INDEX
+ e.g., delete 3                                                                                                       |
+| Edit                                                                                                                 | edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [pr/PROPERTY]… [t/USER_TYPE]    ​
+ e.g., edit 2 n/James Lee e/jameslee@example.com                                                                      |
+| Find                                                                                                                 | find KEYWORD [MORE_KEYWORDS]
+ e.g., find James Jake                                                                                                |
+| List                                                                                                                 | list  |
+| Help                                                                                                                 | help  |
+| Favourite                                                                                                            | favourite INDEX
+ e.g., favourite 3                                                                                                    |
+| Open Favourites window                                                                                               | fw
 

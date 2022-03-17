@@ -29,8 +29,8 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Address address;
+    private Optional<Favourite> favourite;
     private Set<Property> properties;
-    private Favourite favourite;
     private Optional<Preference> preference;
     private UserType userType;
 
@@ -41,7 +41,7 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        favourite = new Favourite(false);
+        favourite = Optional.empty();
         address = new Address(DEFAULT_ADDRESS);
         properties = new HashSet<>();
         preference = Optional.empty();
@@ -100,14 +100,6 @@ public class PersonBuilder {
      */
     public PersonBuilder withEmail(String email) {
         this.email = new Email(email);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Favourite} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withFavourite(boolean status) {
-        this.favourite = new Favourite(status);
         return this;
     }
 

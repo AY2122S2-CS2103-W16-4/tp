@@ -18,7 +18,7 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
-    private final Favourite favourite;
+    private Optional<Favourite> favourite;
 
     // Data fields
     private final Address address;
@@ -28,9 +28,9 @@ public class Person {
 
     /**
      * This constructor is used when editing a Client.
-     * Favourited clients will remain favourited & unfavourited clients will remain unfavourited
+     * Favourited clients will remain favourited
      */
-    public Person(Name name, Phone phone, Email email, Favourite favourite, Address address,
+    public Person(Name name, Phone phone, Email email, Optional<Favourite> favourite, Address address,
             Set<Property> properties, Optional<Preference> preference, UserType userType) {
         requireAllNonNull(name, phone, email, favourite, address, properties, preference, userType);
         this.name = name;
@@ -45,7 +45,8 @@ public class Person {
 
     /**
      * Every field must be present and not null.
-     * This constructor is used for adding a new Client, thus default status is unfavourited(false)
+     * This constructor is used for adding a new Client that
+     * does not have a Favourite field by default (not favourited at the start)
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Property> properties,
             Optional<Preference> preference, UserType userType) {
@@ -53,8 +54,8 @@ public class Person {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.favourite = new Favourite(false);
         this.address = address;
+        this.favourite = Optional.ofNullable(null);
         this.properties = properties;
         this.preference = preference;
         this.userType = userType;
@@ -72,16 +73,15 @@ public class Person {
         return email;
     }
 
-    public Favourite getFavourite() {
+    public Optional<Favourite> getFavourite() {
         return favourite;
     }
 
     /**
-     * Toggles the favourite status of Person
+     * Creates the favourite status of Person such that he/she is favourited
      */
-    public void toggleFavourite() {
-        boolean toggledStatus = !favourite.getStatus();
-        favourite.setStatus(toggledStatus);
+    public void createFavouriteStatus() {
+        favourite = Optional.of(new Favourite(true));
     }
 
     public Address getAddress() {
@@ -176,10 +176,13 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Favourite: ")
-                .append(getFavourite())
                 .append("; Address: ")
                 .append(getAddress());
+
+        if (getFavourite().isPresent()) {
+            builder.append("; Favourite: ");
+            builder.append(getFavourite().get());
+        }
 
         Set<Property> properties = getProperties();
         if (!properties.isEmpty()) {

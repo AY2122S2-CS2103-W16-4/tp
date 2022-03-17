@@ -34,6 +34,27 @@ public class FavouriteWindow extends UiPart<Stage> {
     }
 
     /**
+     * Returns true if the favourites window is currently being shown.
+     */
+    public boolean isShowing() {
+        return getRoot().isShowing();
+    }
+
+    /**
+     * Hides the favourites window.
+     */
+    public void hide() {
+        getRoot().hide();
+    }
+
+    /**
+     * Focuses on the favourites window.
+     */
+    public void focus() {
+        getRoot().requestFocus();
+    }
+
+    /**
      * Calls methods to fill in all parts of the window and displays window
      */
     public void show() {

@@ -59,7 +59,11 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        favourite.setText(person.getFavourite().toString());
+        if (person.getFavourite().isPresent()) {
+            favourite.setText(person.getFavourite().get().toString());
+        } else {
+            favourite.setManaged(false);
+        }
         userType.getChildren().add(new Label(person.getUserType().value));
 
         StringJoiner propertyJoiner = new StringJoiner("\n");

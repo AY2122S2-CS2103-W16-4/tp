@@ -150,7 +150,7 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        public void setFavouriteStatus(Person personToFavourite) {
+        public void favouritePerson(Person personToFavourite) {
             throw new AssertionError("This method should not be called.");
         }
 
