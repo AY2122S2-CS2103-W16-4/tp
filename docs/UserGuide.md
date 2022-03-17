@@ -147,6 +147,14 @@ Exits the program.
 
 Format: `exit`
 
+## Navigating the help window
+
+<img src="images/user-guide/helpWindowUi.png" width="600px">
+
+1. Link to the full user guide
+2. Buttons to access the different help sections
+3. Help contents
+
 ### Favourite a person: `favourite`
 
 Favourites the specified person from the application. The user (real estate agent) will be able to view the more compact list of favourited persons in a new Favourites Window.

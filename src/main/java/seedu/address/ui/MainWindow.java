@@ -223,8 +223,6 @@ public class MainWindow extends UiPart<Stage> {
                 handleFavourite();
             }
 
-            personListPanel.refresh();
-
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
