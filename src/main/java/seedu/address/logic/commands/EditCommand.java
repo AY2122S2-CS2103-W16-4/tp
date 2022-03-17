@@ -140,7 +140,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Optional<Favourite> favourite;
+        private Favourite favourite;
         private Set<Property> properties;
         private UserType userType;
 
@@ -192,12 +192,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setFavourite(Optional<Favourite> favourite) {
-            this.favourite = favourite;
+        public void setFavourite(Favourite favourite) {
+            this.favourite = (favourite != null) ? new Favourite(true) : null;
         }
 
         public Optional<Favourite> getFavourite() {
-            return favourite;
+            return (favourite != null) ? Optional.of(favourite) : Optional.empty();
         }
 
         public void setAddress(Address address) {
