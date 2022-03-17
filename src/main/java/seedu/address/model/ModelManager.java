@@ -130,7 +130,7 @@ public class ModelManager implements Model {
     public void favouritePerson(Person personToFavourite) {
         addressBook.favouritePerson(personToFavourite);
     }
-  
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
