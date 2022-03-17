@@ -193,11 +193,11 @@ public class EditCommand extends Command {
         }
 
         public void setFavourite(Favourite favourite) {
-            this.favourite = favourite;
+            this.favourite = (favourite != null) ? new Favourite(true) : null;
         }
 
         public Optional<Favourite> getFavourite() {
-            return Optional.ofNullable(favourite);
+            return (favourite != null) ? Optional.of(favourite) : Optional.empty();
         }
 
         public void setAddress(Address address) {

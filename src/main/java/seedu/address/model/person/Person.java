@@ -55,6 +55,7 @@ public class Person {
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.favourite = Optional.empty();
         this.properties = properties;
         this.preference = preference;
         this.userType = userType;
@@ -176,10 +177,14 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Favourite: ")
-                .append(getFavourite())
                 .append("; Address: ")
                 .append(getAddress());
+
+        Optional<Favourite> favourite = getFavourite();
+        if (!favourite.isEmpty()) {
+            builder.append("; Favourite: ");
+            builder.append(getFavourite().get());
+        }
 
         Set<Property> properties = getProperties();
         if (!properties.isEmpty()) {
