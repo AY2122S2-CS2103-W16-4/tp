@@ -20,8 +20,6 @@ public class Favourite {
 
     @Override
     public String toString() {
-        return value
-                ? "Favourited"
-                : "Unfavourited";
+        return "Favourited";
     }
 }

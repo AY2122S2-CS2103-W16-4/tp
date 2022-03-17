@@ -31,7 +31,7 @@ class JsonAdaptedPerson {
     private final String name;
     private final String phone;
     private final String email;
-    private final boolean favourite;
+    private final String favourite;
     private final String address;
     private final List<JsonAdaptedProperty> properties = new ArrayList<>();
     private final JsonAdaptedPreference preference;
@@ -42,7 +42,7 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("favourite") boolean favourite,
+            @JsonProperty("email") String email, @JsonProperty("favourite") String favourite,
             @JsonProperty("address") String address, @JsonProperty("properties") List<JsonAdaptedProperty> properties,
             @JsonProperty("preference") JsonAdaptedPreference preference,
             @JsonProperty("userType") String userType) {
@@ -66,7 +66,7 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        favourite = source.getFavourite().getStatus();
+        favourite = source.getFavourite().isPresent() ? source.getFavourite().get().toString() : null;
         address = source.getAddress().value;
         properties.addAll(source.getProperties().stream()
                 .map(JsonAdaptedProperty::new)
@@ -115,8 +115,8 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        final Favourite modelFavourite;
-        modelFavourite = new Favourite(favourite);
+        final Optional<Favourite> modelFavourite =
+                favourite != null ? Optional.of(new Favourite(true)) : Optional.empty();
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));

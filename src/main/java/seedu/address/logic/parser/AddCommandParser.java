@@ -17,6 +17,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Favourite;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -48,10 +49,12 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Property> properties = ParserUtil.parseProperties(argMultimap.getAllValues(PREFIX_PROPERTY));
+        //Favourite will be set as Optional.empty() for the new Person added
+        Optional<Favourite> favourite = Optional.empty();
         // preference is optional since it should not be present if the person being added is a not a buyer.
         Optional<String> preferenceArg = argMultimap.getValue(PREFIX_PREFERENCE);
-        Optional<Property> preference = preferenceArg.isPresent()
-                ? Optional.of(ParserUtil.parseProperty(preferenceArg.get()))
+        Optional<Preference> preference = preferenceArg.isPresent()
+                ? Optional.of(ParserUtil.parsePreference(preferenceArg.get()))
                 : Optional.empty();
         UserType userType = ParserUtil.parseUserType(argMultimap.getValue(PREFIX_USERTYPE).get());
 

@@ -75,7 +75,7 @@ public class LogicManager implements Logic {
     public ObservableList<Person> getFavouritedPersonList() {
         ObservableList<Person> favouritedList = FXCollections.observableArrayList();
         for (Person person : getFilteredPersonList()) {
-            if (person.getFavourite().getStatus()) {
+            if (person.getFavourite().isPresent()) {
                 favouritedList.add(person);
             }
         }

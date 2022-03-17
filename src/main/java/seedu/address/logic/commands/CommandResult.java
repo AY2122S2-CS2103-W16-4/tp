@@ -20,14 +20,19 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** Favourites information should be shown to the user. */
+    private final boolean showFavourites;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean showMatch, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp,
+                         boolean showMatch, boolean exit, boolean showFavourites) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.showMatch = showMatch;
         this.exit = exit;
+        this.showFavourites = showFavourites;
     }
 
     /**
@@ -35,7 +40,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false);
+        this(feedbackToUser, false, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -54,6 +59,10 @@ public class CommandResult {
         return exit;
     }
 
+    public boolean isShowFavourites() {
+        return showFavourites;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -69,12 +78,13 @@ public class CommandResult {
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
                 && showMatch == otherCommandResult.showMatch
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && showFavourites == otherCommandResult.isShowFavourites();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, showMatch, exit);
+        return Objects.hash(feedbackToUser, showHelp, showMatch, exit, showFavourites);
     }
 
     @Override

@@ -102,7 +102,7 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         //Favourite status for a client will remain unchanged when edited if not, the FavouriteCommand is redundant.
-        Favourite noChangeFavourite = editPersonDescriptor.getFavourite().orElse(personToEdit.getFavourite());
+        Optional<Favourite> noChangeFavourite = personToEdit.getFavourite();
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Property> updatedProperties = editPersonDescriptor.getProperties().orElse(personToEdit.getProperties());
         // preference cannot be edited
@@ -139,8 +139,8 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private Favourite favourite;
         private Address address;
+        private Optional<Favourite> favourite;
         private Set<Property> properties;
         private UserType userType;
 
@@ -192,12 +192,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setFavourite(Favourite favourite) {
+        public void setFavourite(Optional<Favourite> favourite) {
             this.favourite = favourite;
         }
 
         public Optional<Favourite> getFavourite() {
-            return Optional.ofNullable(favourite);
+            return favourite;
         }
 
         public void setAddress(Address address) {
