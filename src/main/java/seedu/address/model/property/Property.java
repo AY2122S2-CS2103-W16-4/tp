@@ -47,6 +47,7 @@ public class Property {
         return price;
     }
 
+
     /**
      * Returns true if the two properties have the same region, size, and price.
      */
@@ -105,7 +106,7 @@ public class Property {
 
     @Override
     public int hashCode() {
-        return Objects.hash(region, address, size, address, price);
+        return Objects.hash(region, address, size, price);
     }
 
 }
