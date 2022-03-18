@@ -10,9 +10,9 @@ import seedu.address.model.person.Favourite;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Preference;
+import seedu.address.model.person.UserType;
 import seedu.address.model.property.Property;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Person objects.
@@ -23,14 +23,16 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_USERTYPE = "buyer";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Optional<Favourite> favourite;
-    private Optional<Property> property;
-    private Set<Tag> tags;
+    private Set<Property> properties;
+    private Optional<Preference> preference;
+    private UserType userType;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -41,8 +43,9 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         favourite = Optional.empty();
         address = new Address(DEFAULT_ADDRESS);
-        property = Optional.empty();
-        tags = new HashSet<>();
+        properties = new HashSet<>();
+        preference = Optional.empty();
+        userType = new UserType(DEFAULT_USERTYPE);
     }
 
     /**
@@ -54,8 +57,9 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         favourite = personToCopy.getFavourite();
         address = personToCopy.getAddress();
-        property = personToCopy.getProperty();
-        tags = new HashSet<>(personToCopy.getTags());
+        properties = personToCopy.getProperties();
+        preference = personToCopy.getPreference();
+        userType = personToCopy.getUserType();
     }
 
     /**
@@ -67,10 +71,11 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code userType} into a {@code UserType} and set it to the {@code Person} that we are building.
+     * @param userType
      */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public PersonBuilder withUserType(String userType) {
+        this.userType = new UserType(userType);
         return this;
     }
 
@@ -99,7 +104,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, favourite, address, property, tags);
+        return new Person(name, phone, email, favourite, address, properties, preference, userType);
     }
 
 }

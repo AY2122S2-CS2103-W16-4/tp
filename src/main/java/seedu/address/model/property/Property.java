@@ -62,7 +62,20 @@ public class Property {
     }
 
     /**
-     * Returns true if both properties have the region, address, size and price.
+     * Returns true if both properties have the same address.
+     * This defines a weaker notion of equality between two persons.
+     */
+    public boolean isSameProperty(Property otherProperty) {
+        if (otherProperty == this) {
+            return true;
+        }
+
+        return otherProperty != null
+                && otherProperty.getAddress().equals(getAddress());
+    }
+
+    /**
+     * Returns true if both properties have the same region, address, size and price.
      */
     @Override
     public boolean equals(Object other) {
@@ -83,7 +96,7 @@ public class Property {
 
     @Override
     public int hashCode() {
-        return Objects.hash(region, address, size, address, price);
+        return Objects.hash(region, address, size, price);
     }
 
 }
