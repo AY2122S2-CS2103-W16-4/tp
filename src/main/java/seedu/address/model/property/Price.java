@@ -7,10 +7,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Property's price.
  * Guarantees: immutable; is valid as declared in {@link #isValidPrice(String)}
  */
-public class Price {
+public class Price implements Comparable<Price> {
 
     public static final String MESSAGE_CONSTRAINTS = "Price must have the format $#####";
-    public static final String VALIDATION_REGEX = "^\\$\\d*";
+    public static final String VALIDATION_REGEX = "^\\$\\d+";
 
     private static final double THOUSAND = 1E3;
     private static final double MILLION = 1E6;
@@ -65,5 +65,10 @@ public class Price {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    @Override
+    public int compareTo(Price other) {
+        return getAsInt() - other.getAsInt();
     }
 }
