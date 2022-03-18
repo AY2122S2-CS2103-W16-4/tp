@@ -152,6 +152,7 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress());
 
+        //Checks if Optional<Favourite> produces favourited value
         if (getFavourite().isPresent()) {
             builder.append("; Favourite: ");
             builder.append(getFavourite().get());
