@@ -134,7 +134,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Favourite favourite;
+        private Optional<Favourite> favourite;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -183,12 +183,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setFavourite(Favourite favourite) {
+        public void setFavourite(Optional<Favourite> favourite) {
             this.favourite = favourite;
         }
 
         public Optional<Favourite> getFavourite() {
-            return Optional.ofNullable(favourite);
+            return favourite;
         }
 
         public void setAddress(Address address) {

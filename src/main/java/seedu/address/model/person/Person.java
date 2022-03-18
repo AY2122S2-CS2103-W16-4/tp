@@ -54,6 +54,7 @@ public class Person {
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.favourite = Optional.ofNullable(null);
         this.address = address;
         this.property = property;
         this.tags.addAll(tags);
@@ -79,8 +80,7 @@ public class Person {
      * Creates the favourite status of Person such that he/she is favourited
      */
     public void createFavouriteStatus() {
-        Optional<Favourite> favouriteStatus = Optional.of(new Favourite(true));
-        favourite = favouriteStatus;
+        favourite = Optional.of(new Favourite(true));
     }
 
     public Address getAddress() {
@@ -149,10 +149,13 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Favourite: ")
-                .append(getFavourite().toString())
                 .append("; Address: ")
                 .append(getAddress());
+
+        if (getFavourite().isPresent()) {
+            builder.append("; Favourite: ");
+            builder.append(getFavourite().get());
+        }
 
         if (getProperty().isPresent()) {
             builder.append("; Property: ");
