@@ -149,7 +149,7 @@ public class AddCommandTest {
         public void updateMatchList() {
             throw new AssertionError("This method should not be called.");
         }
-        
+
         @Override
         public void favouritePerson(Person personToFavourite) {
             throw new AssertionError("This method should not be called.");

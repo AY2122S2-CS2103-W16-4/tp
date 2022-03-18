@@ -93,14 +93,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removePerson(Person key) {
         persons.remove(key);
     }
-    
+
     /**
      * Favourites the given Client.
      * @param personToFavourite is the given Client
      */
     public void favouritePerson(Person personToFavourite) {
         persons.favouritePerson(personToFavourite);
-  
+    }
+
     /** Returns a list of all matches. */
     public List<Pair<Person>> match() {
         return persons.match();

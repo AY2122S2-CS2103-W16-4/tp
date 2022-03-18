@@ -184,7 +184,7 @@ public class Person {
             builder.append("; Favourite: ");
             builder.append(getFavourite().get());
         }
-      
+
         Set<Property> properties = getProperties();
         if (!properties.isEmpty()) {
             builder.append("; Properties: ");
