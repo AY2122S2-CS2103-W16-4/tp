@@ -49,7 +49,7 @@ public class FavouriteCommand extends Command {
 
     /**
      * Generates a command execution success message based on whether
-     * the client is favourited or not
+     * the client is in favourites or not
      * {@code personToFavourite}.
      */
     private String generateSuccessMessage(Person personToFavourite) {
